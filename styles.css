@@ -437,12 +437,14 @@ h2 {
   line-height: 1.4;
 }
 
-.mc-honeypot {
+.mc-honeypot,
+.mc-frame {
   position: absolute;
   left: -5000px;
   width: 1px;
   height: 1px;
   overflow: hidden;
+  border: 0;
 }
 
 .news-success h2 {

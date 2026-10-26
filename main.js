@@ -84,61 +84,15 @@
   var newsletter = document.getElementById("newsletter-form");
   var newsletterSuccess = document.getElementById("newsletter-success");
   if (newsletter && newsletterSuccess) {
-    var newsletterNote = newsletter.querySelector(".newsletter-note");
-    newsletter.addEventListener("submit", function (event) {
-      event.preventDefault();
+    newsletter.addEventListener("submit", function () {
       var email = newsletter.querySelector("[name='EMAIL']");
       if (email) {
         email.value = email.value.trim().toLowerCase();
       }
-      if (!newsletter.reportValidity()) {
-        return;
-      }
-      var button = newsletter.querySelector("[type='submit']");
-      if (button) {
-        button.disabled = true;
-      }
-      if (newsletterNote) {
-        newsletterNote.hidden = true;
-        newsletterNote.textContent = "";
-      }
-      var callbackName = "lhdMailchimp" + Date.now();
-      var script = document.createElement("script");
-      window[callbackName] = function (data) {
-        delete window[callbackName];
-        if (script.parentNode) {
-          script.parentNode.removeChild(script);
-        }
-        if (button) {
-          button.disabled = false;
-        }
-        var message = String((data && data.msg) || "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
-        if (data && data.result === "success") {
-          newsletter.hidden = true;
-          newsletterSuccess.hidden = false;
-        } else if (newsletterNote) {
-          newsletterNote.textContent = message || "Please try again.";
-          newsletterNote.hidden = false;
-        }
-      };
-      script.onerror = function () {
-        delete window[callbackName];
-        if (script.parentNode) {
-          script.parentNode.removeChild(script);
-        }
-        if (button) {
-          button.disabled = false;
-        }
-        if (newsletterNote) {
-          newsletterNote.textContent = "Please try again.";
-          newsletterNote.hidden = false;
-        }
-      };
-      var params = new URLSearchParams(new FormData(newsletter));
-      params.set("c", callbackName);
-      var action = newsletter.getAttribute("action").replace("/subscribe/post", "/subscribe/post-json");
-      script.src = action + "&" + params.toString();
-      document.body.appendChild(script);
+      window.setTimeout(function () {
+        newsletter.hidden = true;
+        newsletterSuccess.hidden = false;
+      }, 300);
     });
   }
 
