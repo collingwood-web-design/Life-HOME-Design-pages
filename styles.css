@@ -142,12 +142,16 @@ textarea {
 .submenu {
   display: none;
   position: absolute;
-  top: calc(100% + 18px);
+  z-index: 2;
+  top: 100%;
   left: 0;
   min-width: 180px;
   margin: 0;
-  padding: 8px 0;
+  padding: 14px 0 0;
   list-style: none;
+}
+
+.submenu li {
   background: #fff;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
@@ -179,17 +183,35 @@ textarea {
 
 .hero-frame {
   position: relative;
+  aspect-ratio: 2 / 1;
   background: #ddd;
 }
 
 .hero-slide {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  z-index: 0;
 }
 
-.hero-slide[hidden] {
-  display: none;
+.hero-slide.is-fading {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  z-index: 2;
+  transition: opacity 0.9s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide.is-active {
+    transition: none;
+  }
 }
 
 .icon-play[hidden],
@@ -201,7 +223,7 @@ textarea {
   position: absolute;
   left: 50%;
   bottom: 0;
-  z-index: 2;
+  z-index: 3;
   display: grid;
   place-items: center;
   width: 54px;
@@ -408,6 +430,21 @@ h2 {
   text-align: center;
 }
 
+.newsletter-note {
+  margin: 12px 0 0;
+  color: #8a3b2a;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.mc-honeypot {
+  position: absolute;
+  left: -5000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .news-success h2 {
   color: #888;
   font-family: "Open Sans", Arial, sans-serif;
@@ -415,6 +452,12 @@ h2 {
   font-weight: 400;
   letter-spacing: 0;
   text-transform: none;
+}
+
+.news-success p {
+  margin: 8px 0 0;
+  color: #888;
+  font-size: 14px;
 }
 
 .quote {
@@ -1315,7 +1358,7 @@ h2 {
   z-index: 80;
   display: grid;
   place-items: center;
-  padding: 48px 16px;
+  padding: 56px 72px 36px;
   background: rgba(0, 0, 0, 0.82);
 }
 
@@ -1323,25 +1366,67 @@ h2 {
   display: none;
 }
 
+.lightbox-figure {
+  margin: 0;
+  text-align: center;
+}
+
 .lightbox img {
   max-width: min(1100px, 100%);
-  max-height: 86vh;
+  max-height: 78vh;
   width: auto;
   height: auto;
 }
 
-.lightbox-close {
+.lightbox-count {
+  margin: 14px 0 0;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
   position: absolute;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.lightbox-close {
   top: 14px;
   right: 14px;
   width: 40px;
   height: 40px;
-  border: 0;
-  background: transparent;
-  color: #fff;
   font-size: 32px;
   line-height: 1;
-  cursor: pointer;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 72px;
+  padding: 0;
+  transform: translateY(-50%);
+}
+
+.lightbox-prev {
+  left: 10px;
+}
+
+.lightbox-next {
+  right: 10px;
+}
+
+.lightbox-prev[hidden],
+.lightbox-next[hidden],
+.lightbox-count[hidden] {
+  display: none;
 }
 
 @media (max-width: 980px) {
@@ -1382,23 +1467,21 @@ h2 {
   .menu-toggle {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: calc(100% - 24px);
-    margin: 8px auto 14px;
-    padding: 10px 14px;
+    justify-content: center;
+    width: 64px;
+    height: 52px;
+    margin: 2px auto 10px;
+    padding: 0;
     border: 0;
-    border-radius: 3px;
-    background: #ececec;
-    color: #9a9a9a;
-    font-size: 15px;
+    background: transparent;
   }
 
   .burger,
   .burger::before,
   .burger::after {
     display: block;
-    width: 18px;
-    height: 2px;
+    width: 32px;
+    height: 3px;
     background: #c47a45;
     content: "";
   }
@@ -1414,11 +1497,11 @@ h2 {
   }
 
   .burger::before {
-    top: -6px;
+    top: -9px;
   }
 
   .burger::after {
-    top: 6px;
+    top: 9px;
   }
 
   .mobile-nav {
@@ -1561,5 +1644,22 @@ h2 {
   .project-gallery {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+  }
+
+  .lightbox {
+    padding: 52px 46px 24px;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    width: 40px;
+  }
+
+  .lightbox-prev {
+    left: 2px;
+  }
+
+  .lightbox-next {
+    right: 2px;
   }
 }

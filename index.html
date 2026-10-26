@@ -82,8 +82,7 @@
         </ul>
       </div>
     </div>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
-      <span>Select Page</span>
+    <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
       <span class="burger" aria-hidden="true"></span>
     </button>
     <nav id="mobile-nav" class="mobile-nav" hidden>
@@ -102,9 +101,9 @@
     <section class="hero" aria-roledescription="carousel" aria-label="Featured homes">
       <div class="hero-frame">
         <img class="hero-slide is-active" src="https://media.cwd-cdn.com/Life-HOME-Design/images/slide-exterior.jpg" width="1200" height="600" alt="Stone and white custom home with a black metal roof">
-        <img class="hero-slide" src="https://media.cwd-cdn.com/Life-HOME-Design/images/slide-kitchen.jpg" width="1200" height="600" alt="Bright white kitchen with a long island" hidden>
-        <img class="hero-slide" src="https://media.cwd-cdn.com/Life-HOME-Design/images/slide-porch.jpg" width="1200" height="600" alt="Covered porch with wooden lounge chairs" hidden>
-        <img class="hero-slide" src="https://media.cwd-cdn.com/Life-HOME-Design/images/slide-living.jpg" width="1200" height="600" alt="Sunlit living room with large windows" hidden>
+        <img class="hero-slide" src="https://media.cwd-cdn.com/Life-HOME-Design/images/slide-kitchen.jpg" width="1200" height="600" alt="Bright white kitchen with a long island">
+        <img class="hero-slide" src="https://media.cwd-cdn.com/Life-HOME-Design/images/slide-porch.jpg" width="1200" height="600" alt="Covered porch with wooden lounge chairs">
+        <img class="hero-slide" src="https://media.cwd-cdn.com/Life-HOME-Design/images/slide-living.jpg" width="1200" height="600" alt="Sunlit living room with large windows">
         <button class="hero-play" type="button" aria-label="Play slideshow">
           <svg class="icon-play" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="#fff" d="M11.58 7.03L5.3 2.17A.86.86 0 0 0 4 2.86v9.75c0 .62.38 1.13.86 1.13.16 0 .31-.06.44-.16l6.28-4.87c.25-.2.42-.56.42-.97 0-.41-.17-.77-.42-.97z"></path></svg>
           <svg class="icon-pause" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" hidden><path fill="#fff" d="M4 2h3v12H4zM9 2h3v12H9z"></path></svg>
@@ -177,23 +176,29 @@
       <div class="split split-news">
         <div class="split-copy news-copy">
           <div class="news-card">
-            <form id="newsletter-form">
+            <form id="newsletter-form" action="https://lifehomedesign.us6.list-manage.com/subscribe/post?u=0d361b88bf&amp;id=ede2fd050f&amp;f_id=00ad1fe2f0" method="post">
               <div class="news-head">
                 <h2>Subscribe to Our Newsletter</h2>
                 <p>Join our mailing list to receive our newsletter</p>
               </div>
               <div class="news-body">
                 <label class="visually-hidden" for="news-first">First Name</label>
-                <input id="news-first" name="First Name" type="text" placeholder="First Name" maxlength="50" required>
+                <input id="news-first" name="FNAME" type="text" placeholder="First Name" maxlength="50" autocomplete="given-name" required>
                 <label class="visually-hidden" for="news-last">Last Name</label>
-                <input id="news-last" name="Last Name" type="text" placeholder="Last Name" maxlength="50" required>
+                <input id="news-last" name="LNAME" type="text" placeholder="Last Name" maxlength="50" autocomplete="family-name" required>
                 <label class="visually-hidden" for="news-email">Email</label>
-                <input id="news-email" name="Email" type="email" placeholder="Email" required>
+                <input id="news-email" name="EMAIL" type="email" placeholder="Email" autocomplete="email" required>
                 <button class="news-submit" type="submit">Subscribe!</button>
+                <p class="newsletter-note" role="alert" hidden></p>
+              </div>
+              <div class="mc-honeypot" aria-hidden="true">
+                <label for="news-company">Company</label>
+                <input id="news-company" name="b_0d361b88bf_ede2fd050f" type="text" tabindex="-1" autocomplete="off" value="">
               </div>
             </form>
             <div id="newsletter-success" class="news-success" hidden>
               <h2>You have Successfully Subscribed!</h2>
+              <p>Please check your email to confirm.</p>
             </div>
           </div>
         </div>

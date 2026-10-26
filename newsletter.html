@@ -68,8 +68,7 @@
         </ul>
       </div>
     </div>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
-      <span>Select Page</span>
+    <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
       <span class="burger" aria-hidden="true"></span>
     </button>
     <nav id="mobile-nav" class="mobile-nav" hidden>
@@ -96,23 +95,29 @@
         <p>If you would like to receive each newsletter as it appears then just fill out the form to be included on her mailing list.</p>
       </div>
       <div class="news-card">
-        <form id="newsletter-form">
+        <form id="newsletter-form" action="https://lifehomedesign.us6.list-manage.com/subscribe/post?u=0d361b88bf&amp;id=ede2fd050f&amp;f_id=00ad1fe2f0" method="post">
           <div class="news-head">
             <h2>Subscribe to Our Newsletter</h2>
             <p>Join our mailing list to receive our newsletter</p>
           </div>
           <div class="news-body">
             <label class="visually-hidden" for="news-first">First Name</label>
-            <input id="news-first" name="First Name" type="text" placeholder="First Name" maxlength="50" required>
+            <input id="news-first" name="FNAME" type="text" placeholder="First Name" maxlength="50" autocomplete="given-name" required>
             <label class="visually-hidden" for="news-last">Last Name</label>
-            <input id="news-last" name="Last Name" type="text" placeholder="Last Name" maxlength="50" required>
+            <input id="news-last" name="LNAME" type="text" placeholder="Last Name" maxlength="50" autocomplete="family-name" required>
             <label class="visually-hidden" for="news-email">Email</label>
-            <input id="news-email" name="Email" type="email" placeholder="Email" required>
+            <input id="news-email" name="EMAIL" type="email" placeholder="Email" autocomplete="email" required>
             <button class="news-submit" type="submit">Subscribe!</button>
+            <p class="newsletter-note" role="alert" hidden></p>
+          </div>
+          <div class="mc-honeypot" aria-hidden="true">
+            <label for="news-company">Company</label>
+            <input id="news-company" name="b_0d361b88bf_ede2fd050f" type="text" tabindex="-1" autocomplete="off" value="">
           </div>
         </form>
         <div id="newsletter-success" class="news-success" hidden>
           <h2>You have Successfully Subscribed!</h2>
+          <p>Please check your email to confirm.</p>
         </div>
       </div>
     </section>
